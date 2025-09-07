@@ -89,7 +89,9 @@ public class Resume {
                         "  - " + exp.getRole() + " at " + exp.getCompanyName() + " (" + exp.getDuration() + ")");
                 // Assuming getAchievements returns a List<String>
                 List<String> achievements = (List<String>) exp.getAchievements();
-                achievements.forEach(achievement -> System.out.println("    * " + achievement));
+                if (achievements != null) {
+                    achievements.forEach(achievement -> System.out.println("    * " + achievement));
+                }
             });
         }
         System.out.println("----------------------");
