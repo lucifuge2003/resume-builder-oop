@@ -1,7 +1,7 @@
 public class Education {
-    private String schoolName;
-    private String degree;
-    private int yearGraduated;
+    private final String schoolName;
+    private final String degree;
+    private final int yearGraduated;
 
     public Education(String schoolName, String degree, int year) {
         this.schoolName = schoolName;
