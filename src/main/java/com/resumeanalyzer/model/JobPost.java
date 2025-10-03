@@ -69,10 +69,4 @@ public class JobPost {
     public void addRequirement(String requirement) {
         this.requirements.add(requirement);
     }
-
-    // toString method for easy console debugging
-    @Override
-    public String toString() {
-        return "JobPost";
-    }
 }
