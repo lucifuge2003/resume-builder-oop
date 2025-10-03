@@ -1,9 +1,12 @@
 package com.resumeanalyzer.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Resume {
+    // ------------------------------------
+    // Instance Variables (Attributes)
+    // ------------------------------------
     private String name;
     private int age;
     private String email;
@@ -15,6 +18,9 @@ public class Resume {
     private Portfolio portfolio;
     private double resumeScore;
 
+    // ------------------------------------
+    // Constructors
+    // ------------------------------------
     public Resume() {
         this.skills = new ArrayList<>();
         this.educationList = new ArrayList<>();
@@ -22,6 +28,69 @@ public class Resume {
         this.certifcations = new ArrayList<>();
         this.portfolio = new Portfolio();
         this.resumeScore = 0.0;
+    }
+
+    // ------------------------------------
+    // Accessor Methods (Getters and Setters)
+    // ------------------------------------
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public List<Education> getEducationList() {
+        return educationList;
+    }
+
+    public List<Experience> getExperienceList() {
+        return experienceList;
+    }
+
+    public List<String> getCertifcations() {
+        return certifcations;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public double getResumeScore() {
+        return resumeScore;
+    }
+
+    public void setResumeScore(double resumeScore) {
+        this.resumeScore = resumeScore;
     }
 
     public void addSkill(String skill) {
