@@ -138,11 +138,4 @@ public class Analyzer {
         // Delegates logic to the composed object itself
         return portfolio.analyzePortfolio();
     }
-
-    // ------------------------------------
-    // Roadmap Engine Integration (Next Step)
-    // ------------------------------------
-
-    // Note: The Roadmap generation will be handled by the RoadmapEngine class
-    // after the initial analysis is complete.
 }
