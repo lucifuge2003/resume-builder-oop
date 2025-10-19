@@ -1,6 +1,11 @@
 package com.resumeanalyzer.engine;
 
+// classes imports
+import com.resumeanalyzer.model.*;
+
+// utils
 import java.util.List;
+import java.util.ArrayList;
 
 public class Analyzer {
 

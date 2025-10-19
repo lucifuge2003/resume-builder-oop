@@ -1,3 +1,9 @@
+package com.resumeanalyzer.engine;
+
+// classes imports
+import com.resumeanalyzer.model.*;
+
+// utils
 import java.util.List;
 
 public class AnalysisResult {

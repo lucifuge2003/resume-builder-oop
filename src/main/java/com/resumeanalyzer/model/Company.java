@@ -1,3 +1,5 @@
+package com.resumeanalyzer.model;
+
 import java.util.List;
 
 public class Company {
