@@ -1,11 +1,13 @@
 package com.resumeanalyzer.ui;
 
-// Imports for orchestration
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 import com.resumeanalyzer.data.MockDataSource;
+import com.resumeanalyzer.engine.AnalysisResult;
 import com.resumeanalyzer.engine.Analyzer;
+import com.resumeanalyzer.engine.RoadmapEngine;
 import com.resumeanalyzer.model.JobPost;
 import com.resumeanalyzer.model.Resume;
 
@@ -61,9 +63,72 @@ public class MainApp {
         // Instantiate the Analyzer. This object is associated with (uses) the data
         // objects.
         Analyzer analyzer = new Analyzer();
-        System.out.println("Analyzer Engine initialized. Ready to process data...");
+        // Execute the main analysis method
+        List<AnalysisResult> results = analyzer.analyzeJobs(candidateResume, mockJobs);
 
-        System.out.println("\n*** Proceed to Step 4: Implement Analyzer.java ***");
+        // ----------------------------------------------------
+        // 4. ROADMAP & OUTPUT PHASE: Process Results and Generate Report
+        // ----------------------------------------------------
+        RoadmapEngine roadmapEngine = new RoadmapEngine();
+
+        // Sort the results by Total Match Score (TMS) descending
+        results.sort(Comparator.comparing(AnalysisResult::getTmsScore).reversed());
+
+        // Iterate through the results to generate the skill gap for the top matches
+        for (AnalysisResult result : results) {
+            // Generate the skill gap
+            List<String> gap = roadmapEngine.generateSkillGap(result.getJobPost(), candidateResume);
+            result.setSkillGap(gap);
+        }
+        // Display the final output
+        displayReport(results, roadmapEngine);
     }
 
+    /**
+     * Displays the final analysis report to the console.
+     */
+    public void displayReport(List<AnalysisResult> results, RoadmapEngine roadmapEngine) {
+
+        System.out.println("\n=================================================");
+        System.out.println("             ANALYSIS REPORT CARD              ");
+        System.out.println("=================================================");
+
+        if (results.isEmpty()) {
+            System.out.println("No job matches found.");
+            return;
+        }
+        System.out.println("\n--- Top 3 Job Matches (Sorted by TMS) ---");
+
+        for (int i = 0; i < Math.min(3, results.size()); i++) {
+            AnalysisResult result = results.get(i);
+            JobPost job = result.getJobPost();
+
+            System.out.printf("\n%d. %s (TMS: %.2f%% Suitability)\n",
+                    i + 1, job.getJobTitle(), result.getTmsScore());
+            System.out.printf("   > Keyword Match (JMS): %.2f%%\n", result.getJmsScore());
+            System.out.printf("   > Resume Quality (RQ): %.2f%%\n", result.getRqScore());
+            System.out.printf("   > Portfolio Impact (PIS): %.2f%%\n", result.getPisScore());
+
+            // --- Roadmap for the Top Match ---
+            if (i == 0) {
+                System.out.println("\n--- Targeted Skill Gap for BEST MATCH ---");
+                if (result.getSkillGap().isEmpty()) {
+                    System.out.println("Goal Achieved! No significant skill gaps found.");
+                } else {
+                    System.out.println("Missing Skills:");
+                    for (String missing : result.getSkillGap()) {
+                        System.out.println(" - " + missing);
+                    }
+
+                    // --- Suggested Courses ---
+                    List<String> suggestions = roadmapEngine.suggestCourses(result.getSkillGap());
+                    for (String suggestion : suggestions) {
+                        System.out.println(suggestion);
+                    }
+                }
+                System.out.println("------------------------------------------");
+            }
+        }
+        System.out.println("\n=================================================");
+    }
 }
