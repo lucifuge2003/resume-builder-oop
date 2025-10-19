@@ -27,7 +27,9 @@ public class ResumeBuilder {
      * @return A fully populated Resume object.
      */
     public Resume buildResume() {
-        System.out.println("--- Resume Builder: Start Q&A Flow ---");
+        System.out.println("\n╔═══════════════════════ Resume Builder (Q&A) ══════════════════════╗");
+        System.out.println("        Please answer the prompts below to build your resume");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════╝\n");
 
         Resume resume = new Resume(); // instantiate the main composite object
         // 1. Collect Personal Information
@@ -54,26 +56,25 @@ public class ResumeBuilder {
      * Collects basic String/Primitive fields (Name, Email, Phone, Age).
      */
     private void collectPersonalInfo(Resume resume) {
-        System.out.println("\n");
-
-        System.out.print("Enter Full Name: ");
+        System.out.println("Personal Information:");
+        System.out.print("  Full Name: ");
         resume.setName(scanner.nextLine().trim());
 
-        System.out.print("Enter Email Address: ");
+        System.out.print("  Email: ");
         resume.setEmail(scanner.nextLine().trim());
 
-        System.out.print("Enter Phone Number: ");
+        System.out.print("  Phone: ");
         resume.setPhoneNumber(scanner.nextLine().trim());
 
         // Simple input for Age (handle potential non-integer input gracefully)
         try {
-            System.out.print("Enter Age: ");
+            System.out.print("  Age: ");
             String ageInput = scanner.nextLine().trim();
             if (!ageInput.isEmpty()) {
                 resume.setAge(Integer.parseInt(ageInput));
             }
         } catch (NumberFormatException e) {
-            System.out.println("Warning: Invalid age entered. Setting age to 0.");
+            System.out.println("  Warning: Invalid age entered. Setting age to 0.");
             resume.setAge(0);
         }
     }
@@ -83,19 +84,15 @@ public class ResumeBuilder {
      * Certifications, Projects).
      */
     private void collectListItems(String itemName, List<String> targetList) {
-        System.out.println("\n");
-        System.out.println("Enter one " + itemName + " per line. Type 'END' to finish.");
-
+        System.out.println();
+        System.out.println(itemName + " (one per line). Type 'END' to finish.");
         String input;
         while (true) {
-            System.out.print(itemName + " > ");
+            System.out.print("  > ");
             input = scanner.nextLine().trim();
-
-            // Exit condition: "END" or empty line
             if (input.equalsIgnoreCase("END") || input.isEmpty()) {
                 break;
             }
-            // Add the item to the target list (e.g., resume.getSkills().add(input))
             targetList.add(input);
         }
     }
@@ -104,21 +101,22 @@ public class ResumeBuilder {
      * Collects complex Education objects and adds them to the Resume.
      */
     private void collectEducationRecords(Resume resume) {
-        System.out.println("\n");
-        System.out.println("Do you want to add an education entry? (yes/no)");
+        System.out.println();
+        System.out.println("Education Records:");
+        System.out.print("  Would you like to add education entries? (yes/no): ");
         if (!scanner.nextLine().trim().equalsIgnoreCase("yes"))
             return;
 
         while (true) {
-            System.out.print("\nSchool Name (or 'END'): ");
+            System.out.print("  School Name (or 'END'): ");
             String schoolName = scanner.nextLine().trim();
             if (schoolName.equalsIgnoreCase("END") || schoolName.isEmpty())
                 break;
 
-            System.out.print("Degree/Course: ");
+            System.out.print("    Degree/Course: ");
             String degree = scanner.nextLine().trim();
 
-            System.out.print("Year Graduated (e.g., 2024): ");
+            System.out.print("    Year Graduated (e.g., 2024): ");
             String yearGraduated = scanner.nextLine().trim();
 
             // Instantiate the component object (Education)
@@ -133,25 +131,26 @@ public class ResumeBuilder {
      * Collects complex Experience objects and adds them to the Resume.
      */
     private void collectExperienceRecords(Resume resume) {
-        System.out.println("\n");
-        System.out.println("Do you want to add an experience/project entry? (yes/no)");
+        System.out.println();
+        System.out.println("Experience / Projects:");
+        System.out.print("  Would you like to add experience/project entries? (yes/no): ");
         if (!scanner.nextLine().trim().equalsIgnoreCase("yes"))
             return;
 
         while (true) {
-            System.out.print("\nCompany/Project Name (or 'END'): ");
+            System.out.print("  Company/Project Name (or 'END'): ");
             String companyName = scanner.nextLine().trim();
             if (companyName.equalsIgnoreCase("END") || companyName.isEmpty())
                 break;
 
-            System.out.print("Your Role/Position: ");
+            System.out.print("    Your Role/Position: ");
             String role = scanner.nextLine().trim();
 
-            System.out.print("Duration (e.g., 6 months): ");
+            System.out.print("    Duration (e.g., 6 months): ");
             String duration = scanner.nextLine().trim();
 
             // NOTE: For the prototype, we are simplifying 'achievements' into one string.
-            System.out.print("Key Achievements (Use strong action verbs like 'Led', 'Developed'): ");
+            System.out.print("    Key Achievements (Use strong action verbs like 'Led', 'Developed'): ");
             String achievements = scanner.nextLine().trim();
 
             // Instantiate the component object (Experience)

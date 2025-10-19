@@ -32,9 +32,9 @@ public class MainApp {
      */
     public void runApplication(Scanner scanner) {
 
-        System.out.println("=================================================");
-        System.out.println("  RESUME BUILDER AND ANALYZER (OOP PROTOTYPE)  ");
-        System.out.println("=================================================");
+        System.out.println("====================================================================");
+        System.out.println("              RESUME BUILDER AND ANALYZER (OOP PROTOTYPE)          ");
+        System.out.println("====================================================================");
         // ----------------------------------------------------
         // 1. BUILD PHASE: Collect Resume Data from User
         // ----------------------------------------------------
@@ -88,9 +88,9 @@ public class MainApp {
      */
     public void displayReport(List<AnalysisResult> results, RoadmapEngine roadmapEngine) {
 
-        System.out.println("\n=================================================");
-        System.out.println("             ANALYSIS REPORT CARD              ");
-        System.out.println("=================================================");
+        System.out.println("\n==================================================================");
+        System.out.println("                         ANALYSIS REPORT CARD                       ");
+        System.out.println("===================================================================");
 
         if (results.isEmpty()) {
             System.out.println("No job matches found.");
@@ -123,7 +123,8 @@ public class MainApp {
                     // --- Suggested Courses ---
                     List<String> suggestions = roadmapEngine.suggestCourses(result.getSkillGap());
                     System.out.println();
-                    System.out.println("╔════════════════ Suggested Learning Roadmap ═══════════════╗");
+                    System.out.println(
+                            "╔══════════════════════════ Suggested Learning Roadmap ═════════════════════════╗");
                     for (String suggestion : suggestions) {
                         if (suggestion.startsWith("-- ") && suggestion.endsWith(" --")) {
                             // skill title
@@ -136,9 +137,10 @@ public class MainApp {
                             System.out.println("    - " + suggestion);
                         }
                     }
-                    System.out.println("╚══════════════════════════════════════════════════════════╝");
+                    System.out.println(
+                            "╚═══════════════════════════════════════════════════════════════════════════════╝");
                 }
-                System.out.println("----------------------------------------------------------");
+                System.out.println("------------------------------------------------------------------------------");
             }
         }
         System.out.println("\n=================================================");
