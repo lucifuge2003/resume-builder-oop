@@ -125,17 +125,17 @@ public class ResumeBuilder {
         }
 
         while (true) {
-            String companyName = promptNonEmpty("  Company/Project Name (or 'END'): ", null);
+            String companyName = promptNonEmpty("  Company/Project Name (or 'END')", null);
             if (companyName.equalsIgnoreCase("END")) {
                 break;
             }
 
             String role = promptNonEmpty("    Your Role/Position: ", null);
-            String duration = promptNonEmpty("    Duration (e.g., 6 months): ", null);
+            String duration = promptNonEmpty("    Duration (e.g., 6 months)", null);
 
             // NOTE: For the prototype, we are simplifying 'achievements' into one string.
             String achievements = promptNonEmpty(
-                    "    Key Achievements (Use strong action verbs like 'Led', 'Developed'): ", null);
+                    "    Key Achievements (Use strong action verbs like 'Led', 'Developed')", null);
 
             // Instantiate the component object (Experience)
             Experience exp = new Experience(companyName, role, duration, achievements);
@@ -146,7 +146,7 @@ public class ResumeBuilder {
     }
 
     // --------------------
-    // Input helper methods
+    // Input helper methods for validation
     // --------------------
 
     private String safeReadLine() {
