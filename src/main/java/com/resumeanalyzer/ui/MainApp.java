@@ -17,9 +17,8 @@ import com.resumeanalyzer.model.Resume;
  */
 public class MainApp {
     // Main entry point for the application
-    public static void main(String args) {
+    public static void main(String[] args) {
         // Use a try-with-resources block to ensure the Scanner is closed automatically.
-        // [1]
         try (Scanner scanner = new Scanner(System.in)) {
             MainApp app = new MainApp();
             app.runApplication(scanner);
