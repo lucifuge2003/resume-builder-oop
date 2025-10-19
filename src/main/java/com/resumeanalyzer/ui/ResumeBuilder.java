@@ -57,26 +57,18 @@ public class ResumeBuilder {
      */
     private void collectPersonalInfo(Resume resume) {
         System.out.println("Personal Information:");
-        System.out.print("  Full Name: ");
-        resume.setName(scanner.nextLine().trim());
 
-        System.out.print("  Email: ");
-        resume.setEmail(scanner.nextLine().trim());
+        String name = promptNonEmpty("  Full Name: ", "Unknown");
+        resume.setName(name);
 
-        System.out.print("  Phone: ");
-        resume.setPhoneNumber(scanner.nextLine().trim());
+        String email = promptNonEmpty("  Email: ", "");
+        resume.setEmail(email);
 
-        // Simple input for Age (handle potential non-integer input gracefully)
-        try {
-            System.out.print("  Age: ");
-            String ageInput = scanner.nextLine().trim();
-            if (!ageInput.isEmpty()) {
-                resume.setAge(Integer.parseInt(ageInput));
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("  Warning: Invalid age entered. Setting age to 0.");
-            resume.setAge(0);
-        }
+        String phone = promptNonEmpty("  Phone: ", "");
+        resume.setPhoneNumber(phone);
+
+        int age = promptInt("  Age", 0);
+        resume.setAge(age);
     }
 
     /**
@@ -86,11 +78,9 @@ public class ResumeBuilder {
     private void collectListItems(String itemName, List<String> targetList) {
         System.out.println();
         System.out.println(itemName + " (one per line). Type 'END' to finish.");
-        String input;
         while (true) {
-            System.out.print("  > ");
-            input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("END") || input.isEmpty()) {
+            String input = promptNonEmpty("  > ", "END");
+            if (input.equalsIgnoreCase("END")) {
                 break;
             }
             targetList.add(input);
@@ -103,21 +93,18 @@ public class ResumeBuilder {
     private void collectEducationRecords(Resume resume) {
         System.out.println();
         System.out.println("Education Records:");
-        System.out.print("  Would you like to add education entries? (yes/no): ");
-        if (!scanner.nextLine().trim().equalsIgnoreCase("yes"))
+        if (!promptYesNo("  Would you like to add education entries? (yes/no): ", false)) {
             return;
+        }
 
         while (true) {
-            System.out.print("  School Name (or 'END'): ");
-            String schoolName = scanner.nextLine().trim();
-            if (schoolName.equalsIgnoreCase("END") || schoolName.isEmpty())
+            String schoolName = promptNonEmpty("  School Name (or 'END'): ", null);
+            if (schoolName.equalsIgnoreCase("END")) {
                 break;
+            }
 
-            System.out.print("    Degree/Course: ");
-            String degree = scanner.nextLine().trim();
-
-            System.out.print("    Year Graduated (e.g., 2024): ");
-            String yearGraduated = scanner.nextLine().trim();
+            String degree = promptNonEmpty("    Degree/Course: ", null);
+            String yearGraduated = promptNonEmpty("    Year Graduated (e.g., 2024): ", null);
 
             // Instantiate the component object (Education)
             Education edu = new Education(schoolName, degree, yearGraduated);
@@ -133,31 +120,85 @@ public class ResumeBuilder {
     private void collectExperienceRecords(Resume resume) {
         System.out.println();
         System.out.println("Experience / Projects:");
-        System.out.print("  Would you like to add experience/project entries? (yes/no): ");
-        if (!scanner.nextLine().trim().equalsIgnoreCase("yes"))
+        if (!promptYesNo("  Would you like to add experience/project entries? (yes/no): ", false)) {
             return;
+        }
 
         while (true) {
-            System.out.print("  Company/Project Name (or 'END'): ");
-            String companyName = scanner.nextLine().trim();
-            if (companyName.equalsIgnoreCase("END") || companyName.isEmpty())
+            String companyName = promptNonEmpty("  Company/Project Name (or 'END'): ", null);
+            if (companyName.equalsIgnoreCase("END")) {
                 break;
+            }
 
-            System.out.print("    Your Role/Position: ");
-            String role = scanner.nextLine().trim();
-
-            System.out.print("    Duration (e.g., 6 months): ");
-            String duration = scanner.nextLine().trim();
+            String role = promptNonEmpty("    Your Role/Position: ", null);
+            String duration = promptNonEmpty("    Duration (e.g., 6 months): ", null);
 
             // NOTE: For the prototype, we are simplifying 'achievements' into one string.
-            System.out.print("    Key Achievements (Use strong action verbs like 'Led', 'Developed'): ");
-            String achievements = scanner.nextLine().trim();
+            String achievements = promptNonEmpty(
+                    "    Key Achievements (Use strong action verbs like 'Led', 'Developed'): ", null);
 
             // Instantiate the component object (Experience)
             Experience exp = new Experience(companyName, role, duration, achievements);
 
             // Add the component object to the composite object's list
             resume.addExperience(exp);
+        }
+    }
+
+    // --------------------
+    // Input helper methods
+    // --------------------
+
+    private String safeReadLine() {
+        try {
+            return scanner.nextLine().trim();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String promptNonEmpty(String prompt, String defaultValue) {
+        while (true) {
+            System.out.print(prompt + ": ");
+            String line = safeReadLine();
+            if (line == null)
+                return defaultValue;
+            if (!line.isEmpty())
+                return line;
+            if (defaultValue != null && !defaultValue.isEmpty())
+                return defaultValue;
+            System.out.println("    This field cannot be empty. Please enter a value.");
+        }
+    }
+
+    private boolean promptYesNo(String prompt, boolean defaultYes) {
+        while (true) {
+            System.out.print(prompt);
+            String line = safeReadLine();
+            if (line == null)
+                return defaultYes;
+            if (line.isEmpty())
+                return defaultYes;
+            line = line.trim().toLowerCase();
+            if (line.equals("yes") || line.equals("y"))
+                return true;
+            if (line.equals("no") || line.equals("n"))
+                return false;
+            System.out.println("    Please answer 'yes' or 'no'.");
+        }
+    }
+
+    private int promptInt(String prompt, int defaultValue) {
+        while (true) {
+            System.out.print(prompt + ": ");
+            String line = safeReadLine();
+            if (line == null || line.isEmpty())
+                return defaultValue;
+            try {
+                return Integer.parseInt(line);
+            } catch (NumberFormatException e) {
+                System.out.println("    Please enter a valid integer.");
+            }
         }
     }
 }
