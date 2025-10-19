@@ -27,9 +27,9 @@ public class ResumeBuilder {
      * @return A fully populated Resume object.
      */
     public Resume buildResume() {
-        System.out.println("\n╔═══════════════════════ Resume Builder (Q&A) ══════════════════════╗");
+        System.out.println("\n╔═════════════════════════════ Resume Builder (Q&A) ════════════════════════════╗");
         System.out.println("        Please answer the prompts below to build your resume");
-        System.out.println("╚═══════════════════════════════════════════════════════════════════╝\n");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════╝\n");
 
         Resume resume = new Resume(); // instantiate the main composite object
         // 1. Collect Personal Information

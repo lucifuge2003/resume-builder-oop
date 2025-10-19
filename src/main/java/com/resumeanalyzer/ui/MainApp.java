@@ -32,9 +32,10 @@ public class MainApp {
      */
     public void runApplication(Scanner scanner) {
 
-        System.out.println("====================================================================");
-        System.out.println("              RESUME BUILDER AND ANALYZER (OOP PROTOTYPE)          ");
-        System.out.println("====================================================================");
+        System.out.println("=================================================================================");
+        System.out.println("                    RESUME BUILDER AND ANALYZER (OOP PROTOTYPE)                  ");
+        System.out.println("=================================================================================");
+
         // ----------------------------------------------------
         // 1. BUILD PHASE: Collect Resume Data from User
         // ----------------------------------------------------
@@ -88,9 +89,9 @@ public class MainApp {
      */
     public void displayReport(List<AnalysisResult> results, RoadmapEngine roadmapEngine) {
 
-        System.out.println("\n================================================================================");
+        System.out.println("\n=================================================================================");
         System.out.println("                                ANALYSIS REPORT CARD                              ");
-        System.out.println("================================================================================");
+        System.out.println("=================================================================================");
 
         if (results.isEmpty()) {
             System.out.println("No job matches found.");
@@ -140,9 +141,9 @@ public class MainApp {
                     System.out.println(
                             "╚═══════════════════════════════════════════════════════════════════════════════╝");
                 }
-                System.out.println("--------------------------------------------------------------------------------");
+                System.out.println("---------------------------------------------------------------------------------");
             }
         }
-        System.out.println("\n=======================================================================");
+        System.out.println("\n=================================================================================");
     }
 }

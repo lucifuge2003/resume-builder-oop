@@ -23,6 +23,10 @@ public class MockDataSource {
         jobPosts.add(createMLEngineerRole());
         jobPosts.add(createUXDesignerRole());
         jobPosts.add(createCyberSecurityRole());
+        jobPosts.add(createProductManagerRole());
+        jobPosts.add(createCloudArchitectRole());
+        jobPosts.add(createBIAnalystRole());
+        jobPosts.add(createQAEngineerRole());
         return jobPosts;
     }
 
@@ -176,6 +180,76 @@ public class MockDataSource {
                 "Security Certifications",
                 "Incident Response",
                 "Risk Assessment");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createProductManagerRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Product Manager");
+        job.setDescription(
+                "Lead product strategy, define roadmaps, and work with engineering and design teams to deliver features.");
+
+        List<String> requirements = Arrays.asList(
+                "Product Management",
+                "Roadmapping",
+                "Stakeholder Management",
+                "Metrics/Analytics",
+                "Communication",
+                "SQL");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createCloudArchitectRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Cloud Solutions Architect");
+        job.setDescription(
+                "Design and operate scalable cloud systems, advise on architecture, and manage infrastructure as code.");
+
+        List<String> requirements = Arrays.asList(
+                "AWS",
+                "Azure",
+                "Terraform",
+                "Cloud Architecture",
+                "Kubernetes",
+                "Security");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createBIAnalystRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Business Intelligence Analyst");
+        job.setDescription("Build dashboards, ETL pipelines, and data models to provide actionable business insights.");
+
+        List<String> requirements = Arrays.asList(
+                "Power BI",
+                "ETL",
+                "Data Warehousing",
+                "SQL",
+                "DAX",
+                "Data Modeling");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createQAEngineerRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("QA Automation Engineer");
+        job.setDescription("Design and implement automated test suites and integrate testing into CI/CD pipelines.");
+
+        List<String> requirements = Arrays.asList(
+                "Selenium",
+                "Test Automation",
+                "Java",
+                "CI/CD",
+                "JUnit/TestNG",
+                "Automation Frameworks");
         job.setRequirements(requirements);
 
         return job;

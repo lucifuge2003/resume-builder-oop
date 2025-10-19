@@ -97,6 +97,48 @@ public class RoadmapEngine {
                     suggestions.add("Project: Perform exploratory analysis and statistical tests on a dataset");
                     suggestions.add("Practice: Apply concepts in small Kaggle notebooks");
                 }
+                case "aws" -> {
+                    suggestions.add("Course: AWS Cloud Practitioner + AWS Solutions Architect - Associate pathway");
+                    suggestions.add("Project: Deploy a microservice to EC2/ECS and expose it via a Load Balancer");
+                    suggestions.add("Practice: Learn IAM, VPC, and basic networking/security in AWS");
+                }
+                case "terraform" -> {
+                    suggestions.add("Course: Infrastructure as Code with Terraform (hands-on)");
+                    suggestions.add(
+                            "Project: Define and deploy infrastructure for a sample application using Terraform and remote state");
+                    suggestions
+                            .add("Practice: Use modules and versioned state; integrate with CI to apply infra changes");
+                }
+                case "power bi", "powerbi" -> {
+                    suggestions.add("Course: Power BI Desktop and Service - From Data to Dashboards");
+                    suggestions.add(
+                            "Project: Build a cross-filtered executive dashboard using Power BI and publish it to the service");
+                    suggestions.add("Practice: Learn DAX basics and data modeling best practices");
+                }
+                case "dax" -> {
+                    suggestions.add("Course: DAX fundamentals for data modeling and measures");
+                    suggestions.add(
+                            "Project: Implement calculated measures and time-intelligence in a sample Power BI model");
+                    suggestions.add("Practice: Optimize DAX queries for performance on larger datasets");
+                }
+                case "etl" -> {
+                    suggestions.add("Course: ETL and Data Pipeline Design (Airflow/DBT/SSIS)");
+                    suggestions.add(
+                            "Project: Build a small ETL pipeline that extracts, transforms, and loads sample data into a warehouse");
+                    suggestions.add("Practice: Schedule pipelines and add basic monitoring/alerting");
+                }
+                case "selenium" -> {
+                    suggestions.add("Course: Test Automation with Selenium WebDriver (Java/Python)");
+                    suggestions.add(
+                            "Project: Create an automated UI test suite for a sample web app and integrate it into CI");
+                    suggestions.add("Practice: Build page-object models and add cross-browser testing");
+                }
+                case "product management" -> {
+                    suggestions.add("Course: Intro to Product Management + Agile/Lean methodologies");
+                    suggestions.add(
+                            "Project: Draft a product PRD, user stories, and a prioritized roadmap for a small feature set");
+                    suggestions.add("Practice: Run user interviews, capture metrics, and iterate on a mock MVP");
+                }
                 default -> {
                     suggestions.add("Course: Search for beginner-intermediate courses on '" + skill + "'");
                     suggestions.add("Project: Build a small project that uses " + skill + " (practice)");
