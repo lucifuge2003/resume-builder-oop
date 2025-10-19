@@ -14,11 +14,11 @@ public class AnalysisResult {
     // ------------------------------------
     // Instance Variables
     // ------------------------------------
-    private JobPost jobPost; // The specific job that was analyzed
-    private double tmsScore; // Total Match Score (TMS)
-    private double jmsScore; // Job Matching Score (Keyword Match)
-    private double rqScore; // Resume Quality Score
-    private double pisScore; // Portfolio Impact Score
+    private final JobPost jobPost; // The specific job that was analyzed
+    private final double tmsScore; // Total Match Score (TMS)
+    private final double jmsScore; // Job Matching Score (Keyword Match)
+    private final double rqScore; // Resume Quality Score
+    private final double pisScore; // Portfolio Impact Score
     private List<String> skillGap; // Skills required by the job, but missing from the resume
 
     // ------------------------------------

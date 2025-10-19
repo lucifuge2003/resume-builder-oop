@@ -1,12 +1,12 @@
 package com.resumeanalyzer.ui;
 
 // classes imports
-import com.resumeanalyzer.model.Resume;
+import java.util.List;
+import java.util.Scanner;
+
 import com.resumeanalyzer.model.Education;
 import com.resumeanalyzer.model.Experience;
-// utils
-import java.util.Scanner;
-import java.util.List;
+import com.resumeanalyzer.model.Resume;
 
 /**
  * Handles all Q&A style console input to populate the Resume object
@@ -30,19 +30,14 @@ public class ResumeBuilder {
         System.out.println("--- Resume Builder: Start Q&A Flow ---");
 
         Resume resume = new Resume(); // instantiate the main composite object
-
         // 1. Collect Personal Information
         collectPersonalInfo(resume);
-
         // 2. Collect Skills and Certifications (List type)
         collectListItems("Skill", resume.getSkills());
-
         // 3. Collect Education Records (List of Objects type)
         collectEducationRecords(resume);
-
         // 4. Collect Experience Records (List of Objects type)
         collectExperienceRecords(resume);
-
         // (Portfolio input is simple, as it only collects a list of project
         // links/titles)
         collectListItems("Portfolio Project Title/Link", resume.getPortfolio().getProjects());
