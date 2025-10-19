@@ -112,20 +112,33 @@ public class MainApp {
             if (i == 0) {
                 System.out.println("\n--- Targeted Skill Gap for BEST MATCH ---");
                 if (result.getSkillGap().isEmpty()) {
-                    System.out.println("Goal Achieved! No significant skill gaps found.");
+                    System.out.println("\nGoal Achieved! No significant skill gaps found.");
                 } else {
+                    System.out.println();
                     System.out.println("Missing Skills:");
                     for (String missing : result.getSkillGap()) {
-                        System.out.println(" - " + missing);
+                        System.out.println("   • " + missing);
                     }
 
                     // --- Suggested Courses ---
                     List<String> suggestions = roadmapEngine.suggestCourses(result.getSkillGap());
+                    System.out.println();
+                    System.out.println("╔════════════════ Suggested Learning Roadmap ═══════════════╗");
                     for (String suggestion : suggestions) {
-                        System.out.println(suggestion);
+                        if (suggestion.startsWith("-- ") && suggestion.endsWith(" --")) {
+                            // skill title
+                            System.out.println();
+                            System.out.println("  " + suggestion);
+                        } else if (suggestion.isBlank()) {
+                            // spacer
+                            System.out.println();
+                        } else {
+                            System.out.println("    - " + suggestion);
+                        }
                     }
+                    System.out.println("╚══════════════════════════════════════════════════════════╝");
                 }
-                System.out.println("------------------------------------------");
+                System.out.println("----------------------------------------------------------");
             }
         }
         System.out.println("\n=================================================");

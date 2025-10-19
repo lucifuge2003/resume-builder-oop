@@ -49,25 +49,62 @@ public class RoadmapEngine {
         List<String> suggestions = new ArrayList<>();
 
         // checks if you have no missing skills
-        if (missingSkills.isEmpty()) {
+        if (missingSkills == null || missingSkills.isEmpty()) {
             suggestions.add("Congratulations! You have all the core skills for this role.");
             return suggestions;
         }
 
-        suggestions.add("--- Suggested Learning Roadmap ---");
-
-        // TODO: dont forgot mag lagay additional suggestions here as you add more
+        // For each missing skill, provide multiple action items: a recommended course,
+        // a short project suggestion, and a certification/path where applicable.
         for (String skill : missingSkills) {
-            String suggestion = switch (skill.toLowerCase()) {
-                case "spring boot" -> "Take 'Spring Boot 3 Fundamentals' course.";
-                case "python" -> "Complete 'Python Crash Course' project.";
-                case "sql" -> "Practice with 'Advanced SQL Queries' challenges.";
-                case "tableau" -> "Complete the Tableau Desktop Specialist certification track.";
-                case "react" -> "Build a simple single-page application (SPA) using React.";
-                case "rest api" -> "Develop a simple CRUD API using Java/Spring.";
-                default -> "Target skill: " + skill + " (Search for beginner courses/tutorials)";
-            };
-            suggestions.add(suggestion);
+            String key = skill.toLowerCase().trim();
+            suggestions.add("-- " + skill + " --");
+            switch (key) {
+                case "spring boot":
+                    suggestions.add("Course: Spring Boot 3 Fundamentals (Beginner -> Intermediate)");
+                    suggestions.add("Project: Build a RESTful CRUD service with Spring Boot and H2/Postgres");
+                    suggestions.add("Certification: Spring Professional (recommended reading and practice)");
+                    break;
+                case "python":
+                    suggestions.add("Course: Complete 'Python Crash Course' (Hands-on)");
+                    suggestions.add("Project: Build a data processing pipeline + small CLI app");
+                    suggestions.add("Path: Follow Python for Data Science track if interested in ML");
+                    break;
+                case "sql":
+                    suggestions.add("Course: Advanced SQL Queries & Database Design");
+                    suggestions.add(
+                            "Project: Build reports by querying a realistic sample dataset (joins, window functions)");
+                    suggestions.add("Practice: Solve SQL problems on LeetCode / Hackerrank daily");
+                    break;
+                case "tableau":
+                    suggestions.add("Course: Tableau for Data Visualization (Official training)");
+                    suggestions.add("Project: Visualize a dataset end-to-end and publish a dashboard");
+                    suggestions.add("Certification: Tableau Desktop Specialist");
+                    break;
+                case "react":
+                    suggestions.add("Course: Modern React with Hooks and Context (practical)");
+                    suggestions.add("Project: Build a SPA e-commerce mockup using React + local state or Redux");
+                    suggestions.add("Practice: Contribute to an open-source React component library or clone a UI)");
+                    break;
+                case "rest api":
+                case "restapi":
+                    suggestions.add("Course: REST API Design and Implementation (HTTP, JSON, Auth)");
+                    suggestions.add("Project: Develop a simple CRUD API using Java/Spring or Node.js/Express");
+                    suggestions
+                            .add("Practice: Add unit and integration tests to your API and document it with OpenAPI");
+                    break;
+                case "statistics":
+                    suggestions.add("Course: Introductory Statistics for Data Science");
+                    suggestions.add("Project: Perform exploratory analysis and statistical tests on a dataset");
+                    suggestions.add("Practice: Apply concepts in small Kaggle notebooks");
+                    break;
+                default:
+                    suggestions.add("Course: Search for beginner-intermediate courses on '" + skill + "'");
+                    suggestions.add("Project: Build a small project that uses " + skill + " (practice)");
+                    break;
+            }
+            // Add a blank line for readability between skills
+            suggestions.add("");
         }
 
         return suggestions;

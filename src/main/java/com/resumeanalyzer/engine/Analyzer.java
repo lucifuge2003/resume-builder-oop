@@ -100,24 +100,30 @@ public class Analyzer {
                 "Executed", "Influenced", "Delegated", "Controlled", "Forecasted", "Presented",
                 "Orchestrated", "Implemented", "Directed", "Documented", "Facilitated", "Launched");
 
-        // Combine all achievement strings into one block for analysis
-        String allAchievements = resume.getExperienceList().stream()
-                .map(exp -> exp.getAchievements()) // Assuming Experience has getAchievements()
+        // Combine all achievement strings and role titles into one block for analysis
+        String allText = resume.getExperienceList().stream()
+                .map(exp -> exp.getRole() + " " + exp.getAchievements())
                 .collect(Collectors.joining(" "));
+
+        // Convert to lowercase for case-insensitive matching
+        allText = allText.toLowerCase();
 
         // Count occurrences of strong verbs [3]
         for (String verb : actionVerbs) {
-            if (allAchievements.contains(verb)) {
+            String verbLower = verb.toLowerCase();
+            // Use word boundary to match whole words only
+            String pattern = "\\b" + verbLower + "\\b";
+            if (allText.matches(".*" + pattern + ".*")) {
                 verbCount++;
             }
         }
 
-        // Simple scoring: Max score 30. We give 5 points per verb found, maxing out at
-        // 6 verbs.
-        double score = Math.min(verbCount * 5.0, 30.0);
+        // Simple scoring: Max score 30. We give 10 points per verb found, maxing out at
+        // 3 verbs for a more achievable score
+        double score = Math.min(verbCount * 10.0, 30.0);
 
         // Add a bonus for length (simplified readability/impact) [4]
-        if (allAchievements.split("\\s+").length > 20) {
+        if (allText.split("\\s+").length > 20) {
             score += 5.0;
         }
 
