@@ -1,0 +1,12 @@
+com\resumeanalyzer\ui\MainApp.class
+com\resumeanalyzer\model\Experience.class
+com\resumeanalyzer\data\MockDataSource.class
+com\resumeanalyzer\model\Company.class
+com\resumeanalyzer\model\Resume.class
+com\resumeanalyzer\engine\Analyzer.class
+com\resumeanalyzer\engine\AnalysisResult.class
+com\resumeanalyzer\model\Portfolio.class
+com\resumeanalyzer\model\Education.class
+com\resumeanalyzer\ui\ResumeBuilder.class
+com\resumeanalyzer\engine\RoadmapEngine.class
+com\resumeanalyzer\model\JobPost.class

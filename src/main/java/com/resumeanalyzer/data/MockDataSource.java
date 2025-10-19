@@ -18,7 +18,11 @@ public class MockDataSource {
         jobPosts.add(createJavaDeveloperPost());
         jobPosts.add(createDataAnalystInternship());
         jobPosts.add(createWebDevRole());
-        // Additional mock job posts can be added here
+        jobPosts.add(createMobileAppDevRole());
+        jobPosts.add(createDevOpsRole());
+        jobPosts.add(createMLEngineerRole());
+        jobPosts.add(createUXDesignerRole());
+        jobPosts.add(createCyberSecurityRole());
         return jobPosts;
     }
 
@@ -73,6 +77,105 @@ public class MockDataSource {
                 "JavaScript",
                 "React",
                 "UI/UX Principles");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createMobileAppDevRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Mobile Application Developer");
+        job.setDescription("Design and develop cross-platform mobile applications using modern frameworks.");
+
+        List<String> requirements = Arrays.asList(
+                "Flutter",
+                "Dart",
+                "React Native",
+                "iOS Development",
+                "Android Development",
+                "Mobile UI Design",
+                "REST APIs",
+                "Git");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createDevOpsRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("DevOps Engineer");
+        job.setDescription("Implement and maintain CI/CD pipelines, cloud infrastructure, and automation tools.");
+
+        List<String> requirements = Arrays.asList(
+                "Docker",
+                "Kubernetes",
+                "AWS/Azure",
+                "Jenkins",
+                "Linux",
+                "Shell Scripting",
+                "Python",
+                "Infrastructure as Code",
+                "Git");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createMLEngineerRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Machine Learning Engineer");
+        job.setDescription("Develop and deploy machine learning models for production environments.");
+
+        List<String> requirements = Arrays.asList(
+                "Python",
+                "TensorFlow",
+                "PyTorch",
+                "Scikit-learn",
+                "Deep Learning",
+                "Data Processing",
+                "SQL",
+                "Cloud ML Platforms",
+                "Git");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createUXDesignerRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("UX/UI Designer");
+        job.setDescription("Create intuitive and engaging user experiences for web and mobile applications.");
+
+        List<String> requirements = Arrays.asList(
+                "Figma",
+                "Adobe XD",
+                "User Research",
+                "Wireframing",
+                "Prototyping",
+                "Visual Design",
+                "HTML/CSS",
+                "Design Systems",
+                "User Testing");
+        job.setRequirements(requirements);
+
+        return job;
+    }
+
+    private static JobPost createCyberSecurityRole() {
+        JobPost job = new JobPost();
+        job.setJobTitle("Cybersecurity Analyst");
+        job.setDescription("Monitor, detect, investigate, and respond to cybersecurity threats and incidents.");
+
+        List<String> requirements = Arrays.asList(
+                "Network Security",
+                "Security Tools",
+                "Penetration Testing",
+                "SIEM Tools",
+                "Python",
+                "Linux",
+                "Security Certifications",
+                "Incident Response",
+                "Risk Assessment");
         job.setRequirements(requirements);
 
         return job;
