@@ -29,7 +29,6 @@ public class Education {
     // ------------------------------------
     // Accessor Methods (Getters and Setters)
     // ------------------------------------
-
     public String getSchoolName() {
         return schoolName;
     }

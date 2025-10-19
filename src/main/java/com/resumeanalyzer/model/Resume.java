@@ -11,11 +11,11 @@ public class Resume {
     private int age;
     private String email;
     private String phoneNumber;
-    private List<String> skills;
-    private List<Education> educationList;
-    private List<Experience> experienceList;
-    private List<String> certifcations;
-    private Portfolio portfolio;
+    private final List<String> skills;
+    private final List<Education> educationList;
+    private final List<Experience> experienceList;
+    private final List<String> certifcations;
+    private final Portfolio portfolio;
     private double resumeScore;
 
     // ------------------------------------
